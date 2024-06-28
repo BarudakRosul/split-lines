@@ -1,0 +1,23 @@
+name: Publish package to NPM.js
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
+          # Defaults to the user or organization that owns the workflow file
+          scope: "@barudakrosul"
+      - run: npm install
+      - run: npm publish --public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
