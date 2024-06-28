@@ -8,14 +8,16 @@
  * @return {Array<string>} The array of lines, with or without line breaks based on the `keeplinebreaks` parameter.
  */
 String.prototype.splitLines = function(keeplinebreaks = false) {
+  const array = this.split(/(\r?\n|\r|\n)/).reduce((acc, curr, index, array) => {
+    if (index % 2 === 0) {
+      acc.push(curr + (array[index + 1] || ""));
+    }
+    return acc;
+  }, []).filter(Boolean);
+
   if (keeplinebreaks === true) {
-    return this.split(/(\r?\n|\r|\n)/).reduce((acc, curr, index, array) => {
-      if (index % 2 === 0) {
-        acc.push(curr + (array[index + 1] || ""));
-      }
-      return acc;
-    }, []).filter(Boolean);
+    return array;
   } else {
-    return this.split(/\r?\n|\r|\n/).filter(Boolean);
+    return array.map(line => line.replace(/\r?\n|\r|\n/g, ""));
   }
 }
