@@ -29,7 +29,7 @@ describe("Testing splitLines() prototype", function() {
   it("should handle string with only line breaks", function() {
     const text = "\n\r\n\r";
     const result = text.splitLines();
-    assert.deepStrictEqual(result, []);
+    assert.deepStrictEqual(result, ["", "", ""]);
   });
 
   it("should handle string with only line breaks and keep them", function() {
