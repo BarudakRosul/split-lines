@@ -1,6 +1,6 @@
 {
   "name": "@barudakrosul/split-lines",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Splits a string into an array by lines",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,8 @@
     "split",
     "lines",
     "string",
-    "array"
+    "array",
+    "split-line"
   ],
   "author": "Barudak Rosul",
   "license": "Apache-2.0",
